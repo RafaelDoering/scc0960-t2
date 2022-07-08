@@ -54,7 +54,7 @@ export default class CovidDataProcessor {
 
   getActiveCasesSumOfCountriesWithMoreThanAMillionConfirmedCases(data: CountryData[]): number {
     return data
-      .filter((countryData) => countryData.confirmedCases > 1000000)
+      .filter((countryData) => countryData.confirmedCases >= 1000000)
       .reduce((activeCases, countryData) => activeCases += countryData.activeCases, 0);
   }
 }

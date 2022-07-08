@@ -17,7 +17,7 @@ export default class CovidDataProcessor {
     }
   }
 
-  getGreatestConfirmedCountries(data: CountryData[]): string[] {
+  getCountriesWithHigherNumberOfConfirmedCases(data: CountryData[]): string[] {
     return data
       .sort((countryData1, countryData2) => this.sort(countryData1.confirmedCases, countryData2.confirmedCases, { sort: { order: "desc" } }))
       .slice(0, 3)
@@ -25,7 +25,7 @@ export default class CovidDataProcessor {
       .map(countryData => countryData.name);
   }
 
-  getDeathsFromCountriesWithLessConfirmedInGreatestActive(data: CountryData[]): number {
+  getDeathsInCountriesWithLessConfirmedCasesBetweenCountriesWithHigherNumberOfActiveCases(data: CountryData[]): number {
     return data
       .sort((countryData1, countryData2) => this.sort(countryData1.activeCases, countryData2.activeCases, { sort: { order: "desc" } }))
       .slice(0, 10)
@@ -34,7 +34,7 @@ export default class CovidDataProcessor {
       .reduce((deaths, countryData) => deaths += countryData.deaths, 0);
   }
 
-  getGreatestDeathsInSouthernHemisphere(data: CountryData[]): number {
+  getHigherNumberOfDeathsInSouthernHemisphere(data: CountryData[]): number {
     return data
       .filter((countryData) => countryData.lng < 90)
       .sort((countryData1, countryData2) => this.sort(countryData1.deaths, countryData2.deaths, { sort: { order: "desc" } }))
@@ -43,7 +43,7 @@ export default class CovidDataProcessor {
       .at(0);
   }
 
-  getGreatestDeathsInNorthernHemisphere(data: CountryData[]): number {
+  getHigherNumberOfDeathsInNorthernHemisphere(data: CountryData[]): number {
     return data
       .filter((countryData) => countryData.lng > 90)
       .sort((countryData1, countryData2) => this.sort(countryData1.deaths, countryData2.deaths, { sort: { order: "desc" } }))

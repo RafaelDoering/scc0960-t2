@@ -1,13 +1,18 @@
 import CovidDataMapper from "./adapters/covid-data-mapper";
 import CovidDataProcessor from "./adapters/covid-data-processor";
 import CsvFile from "./adapters/csv-file";
+import PromptsInput from "./adapters/prompts-input";
+import ReadInput from "./adapters/read-input";
 
+const proptsAdapter = new PromptsInput();
+const readInput = new ReadInput(proptsAdapter);
 const csvFile = new CsvFile();
-
 const covidDataMapper = new CovidDataMapper();
 
 async function run() {
-  const fileData = await csvFile.read("./files/06-16-2022.csv");
+  const filePath = await readInput.readInput();
+
+  const fileData = await csvFile.read(filePath);
 
   const data = await covidDataMapper.map(fileData);
 

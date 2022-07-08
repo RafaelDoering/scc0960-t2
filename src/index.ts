@@ -18,19 +18,19 @@ async function run() {
 
   const covidDataProcessor = new CovidDataProcessor();
 
-  console.log("Os três países com os maiores valores de \"Confirmed\". Os nomes devem estar em ordem alfabética");
+  console.log("Os três países com mais casos confirmados em ordem alfabética");
   console.log(covidDataProcessor.getGreatestConfirmedCountries(data).join(", "));
 
-  console.log("Dentre os dez países com maiores valores de \"Active\", a soma dos \"Deaths\" dos cinco países com menores valores de \"Confirmed\"");
+  console.log("Dentre os dez países com mais casos ativos, a soma dos mortes dos cinco países com menos casos confirmados");
   console.log(covidDataProcessor.getDeathsFromCountriesWithLessConfirmedInGreatestActive(data));
 
-  console.log("O maior valor de \"Deaths\" entre os países do hemisfério sul.");
+  console.log("O maior número de mortes entre os países do hemisfério sul");
   console.log(covidDataProcessor.getGreatestDeathsInSouthernHemisphere(data));
 
-  console.log("O maior valor de \"Deaths\" entre os países do hemisfério norte");
+  console.log("O maior número de mortes entre os países do hemisfério norte");
   console.log(covidDataProcessor.getGreatestDeathsInNorthernHemisphere(data));
 
-  console.log("A soma de \"Active\" de todos os países em que \"Confirmed\" é maior o igual que 1.000.000");
+  console.log("A soma de casos ativos de todos os países em que tem 1.000.000 ou mais de casos confirmados");
   console.log(covidDataProcessor.getActiveCasesSumOfCountriesWithMoreThanAMillionConfirmedCases(data));
 }
 
